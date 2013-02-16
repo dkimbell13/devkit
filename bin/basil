@@ -22,6 +22,9 @@ fi
 #	BASIL_PATH=$PARTTWO
 #fi
 
+BASIL_PATH=$(dirname $0)"/../"
+## End Fix for Windows
+
 # clean up old logs
 if [ -e $TMPDIR/basil.log ]; then
 	rm $TMPDIR/basil.log
