@@ -83,12 +83,12 @@ git submodule update --init --recursive
 if $PRIV_SUBMODS; then
 	git checkout .gitmodules
 fi
-
-if [ ! -w "/usr/local" ]; then
-		error "You need write permissions to /usr/local"
-		echo "Try running: sudo chown -R \$USER /usr/local"
-		exit 1
-fi
+## Removed for installation on Windows
+#if [ ! -w "/usr/local" ]; then
+#		error "You need write permissions to /usr/local"
+#		echo "Try running: sudo chown -R \$USER /usr/local"
+#		exit 1
+#fi
 
 if ! npm link --local; then
 		error "Linking npm to local"
@@ -101,26 +101,26 @@ fi
 #
 
 which basil
-if [[ $? != 0 ]]; then
-	if [[ ! -w /usr/local/bin ]]; then
-			error "GC SDK install requires write permission to /usr/local/bin"
-			echo "Try: sudo chown -R $(whoami) /usr/local/bin"
-			exit 1
-	fi
-	if [[ -e /usr/local/share/npm/bin/basil ]]; then
-		warn "You should add /usr/local/share/npm/bin/ to your PATH"
-		ln -sf $(readlink /usr/local/share/npm/bin/basil) /usr/local/bin/basil
-	else
-		warn "We could not find basil in your path. Attempting a manual link..."
-		BASIL_PATH=$(abs_path $(dirname $0){/bin/basil})
-		echo $BASIL_PATH
-		if [[ ! -e $BASIL_PATH ]]; then
-			error 'Could not find basil runtime.'
-			exit 1
-		fi
-		ln -sf $BASIL_PATH /usr/local/bin/basil
-	fi
-fi
+#if [[ $? != 0 ]]; then
+#	if [[ ! -w /usr/local/bin ]]; then
+#			error "GC SDK install requires write permission to /usr/local/bin"
+#			echo "Try: sudo chown -R $(whoami) /usr/local/bin"
+#			exit 1
+#	fi
+#	if [[ -e /usr/local/share/npm/bin/basil ]]; then
+#		warn "You should add /usr/local/share/npm/bin/ to your PATH"
+#		ln -sf $(readlink /usr/local/share/npm/bin/basil) /usr/local/bin/basil
+#	else
+#		warn "We could not find basil in your path. Attempting a manual link..."
+#		BASIL_PATH=$(abs_path $(dirname $0){/bin/basil})
+#		echo $BASIL_PATH
+#		if [[ ! -e $BASIL_PATH ]]; then
+#			error 'Could not find basil runtime.'
+#			exit 1
+#		fi
+#		ln -sf $BASIL_PATH /usr/local/bin/basil
+#	fi
+#fi
 
 echo
 
