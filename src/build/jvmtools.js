@@ -48,7 +48,7 @@ function getJavaProcess () {
 		proc.stdout.once('data', function (data) {
 			// Read hostname:port.
 			var parts = String(data).split(':');
-			connectClient(parts[0], parts[1]);
+			connectClient('localhost', parts[1]);
 		});
 		proc.stderr.on('data', function (data) {
 			// process.stderr.write('TealeafBuildTools: ' + data);
