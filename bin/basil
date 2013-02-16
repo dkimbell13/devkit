@@ -3,8 +3,9 @@
 # Basil command line script, that intercepts update calls.
 
 # concat some paths to find the current dir
-PARTONE=$(dirname $0)
-PARTTWO=$(dirname $(readlink $0))"/../"
+#Fix for Windows
+#PARTONE=$(dirname $0)
+#PARTTWO=$(dirname $(readlink $0))"/../"
 
 if [ -z $BASIL_DEBUG ]; then
 	BASIL_DEBUG=1
@@ -14,11 +15,12 @@ if [ -z $TMPDIR ]; then
 	TMPDIR="/tmp"
 fi
 
-if [[ $PARTTWO == \.* ]]; then
-	BASIL_PATH=$PARTONE"/"$PARTTWO
-else
-	BASIL_PATH=$PARTTWO
-fi
+## Fix for Windows
+#if [[ $PARTTWO == \.* ]]; then
+#	BASIL_PATH=$PARTONE"/"$PARTTWO
+#else
+#	BASIL_PATH=$PARTTWO
+#fi
 
 # clean up old logs
 if [ -e $TMPDIR/basil.log ]; then
